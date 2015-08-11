@@ -10,7 +10,7 @@
   "require": {
     "php": ">=5.4.0",
     "illuminate/support": "5.0.*",
-    "akeinhell/wot-api":"dev-master",
+    "akeinhell/wot-api":"dev-master"
   },
   "autoload": {
     "classmap":[
