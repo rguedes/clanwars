@@ -12,6 +12,9 @@
     "illuminate/support": "5.0.*"
   },
   "autoload": {
+    "classmap":[
+      "src/controllers"
+    ],
     "psr-0": {
       "Wot\\Clan\\": "src/"
     }
