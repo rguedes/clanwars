@@ -7,14 +7,10 @@
       "email": "rolandoguedes@gmail.com"
     }
   ],
-  "repositories": [{
-    "type": "vcs",
-    "url": "git@github.com:akeinhell/WotApi.git"
-  }],
   "require": {
     "php": ">=5.4.0",
     "illuminate/support": "5.0.*",
-    "akeinhell/wot-api":"dev-master"
+    "guzzle/guzzle": "3.9.*@dev"
   },
   "autoload": {
     "classmap":[
