@@ -1,22 +1,19 @@
 {
   "name": "rguedes/clanwars",
   "description": "",
-  "authors": [{
-    "name": "Rolando Guedes",
-    "email": "rolandoguedes@gmail.com"
-  }],
+  "authors": [
+    {
+      "name": "Rolando Guedes",
+      "email": "rolandoguedes@gmail.com"
+    }
+  ],
   "require": {
     "php": ">=5.4.0",
     "illuminate/support": "5.0.*"
   },
   "autoload": {
-    "classmap": [
-      "src/controllers",
-      "src/migrations",
-      "src/models"
-    ],
-    "psr-0": {
-      "Wot\\Clanwars\\": "src/"
+    "psr-4": {
+      "Wot\\Clan\\": "src/"
     }
   },
   "minimum-stability": "stable"
