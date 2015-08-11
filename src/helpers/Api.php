@@ -1,7 +1,8 @@
 <?php namespace Wot\Clan\Helpers;
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\CurlException;
+use GuzzleHttp\Client;
+
+use GuzzleHttp\Exception\CurlException;
 
 /**
  * Класс для работы с Wargaming Api
@@ -176,7 +177,7 @@ class Api
             $options = (getenv('PROXY') && getenv('PROXY_URL')) ?
                 ['proxy' => getenv('PROXY_URL')] :
                 [];
-            self::$httpClient = new Client('', [$options]);
+            self::$httpClient = new Client();
             self::$options = $options;
             self::$instance = new self();
         }
@@ -188,7 +189,7 @@ class Api
      * Генерирует API ссылку
      *
      * @param       string $name
-     * @param array        $arguments
+     * @param array $arguments
      *
      * @return string
      */
@@ -218,28 +219,27 @@ class Api
 
     private static function _get($url, $retryCount = 3)
     {
+
         try {
-            $response = self::$httpClient->get($url, null, self::$options)->send();
+            $response = self::$httpClient->get($url, null, self::$options);
 
             list($requestUrl, $arguments) = explode('?', $url);
             self::call(self::$sendCallback, $requestUrl, explode('&', $arguments));
 
             if ($response->getStatusCode() > 400) {
                 if ($retryCount > 0) {
+                    echo "retry";
                     return self::_get($url, $retryCount - 1);
                 } else {
                     self::call(self::$errorCallback, 'HTTP ERROR: Code #' . $response->getStatusCode());
-
                     return null;
                 }
 
             }
-
             return json_decode((string)$response->getBody());
 
         } catch (CurlException $e) {
             self::call(self::$errorCallback, $e->getMessage() . PHP_EOL . $e->getError());
-
             return null;
         }
     }
@@ -248,7 +248,7 @@ class Api
      * Вызов метода API или установка значений переменных класса
      *
      * @param  string $name
-     * @param  array  $arguments
+     * @param  array $arguments
      *
      * @return Api|array|null
      */
