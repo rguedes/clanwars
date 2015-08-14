@@ -1,6 +1,8 @@
 <?php namespace Wot\Clan\Controllers\Clan;
 
 use App\Http\Controllers\Controller;
+use File;
+use Wot\Clan\Helpers\Replay;
 
 class BattlesController extends Controller
 {
@@ -12,19 +14,17 @@ class BattlesController extends Controller
         return "getIndex";
     }
 
-    /**
-     * Get member
-     */
-    public function getMember()
-    {
-        return "getMember";
+    public function getList(){
+        foreach(File::files(storage_path("clanwars")) as $file){
+            echo '<a href="parse/'.basename($file).'">'.basename($file).'</a><br />';
+        }
     }
 
-    /**
-     * Post data from member
-     */
-    public function postMember()
-    {
-        return "postMember";
+    public function parseBattle($name){
+        $replay = new Replay(storage_path("clanwars/".$name));
+        $json = $replay->parse();
+
+
+        dd($json);
     }
 }

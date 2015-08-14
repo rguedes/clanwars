@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Wot\Clan\Helpers\Api;
+use Wot\Clan\Helpers\Dreamfactory;
 use Session;
 use Route;
 
@@ -41,6 +42,7 @@ class MembersController extends Controller
      */
     public function getMember()
     {
+        Dreamfactory::playup()->customers->list();
         return "getMember";
     }
 

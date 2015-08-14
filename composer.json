@@ -20,7 +20,8 @@
       "src/helpers"
     ],
     "psr-0": {
-      "Wot\\Clan\\": "src/"
+      "Wot\\Clan\\": "src/",
+      "phpickle\\": "libs/phpickle"
     }
   },
   "minimum-stability": "stable"
